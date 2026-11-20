@@ -2,7 +2,7 @@
 
 Kleines Windows-Tool, das das Live-Bild deines Bambu-Lab-Druckers in einem kompakten, frei skalierbaren Fenster zeigt, mit dem Druckstatus als Overlay darüber. Im Heimnetz direkt vom Drucker, unterwegs über Home Assistant oder die Bambu-Cloud.
 
-**Aktuelle Version:** 1.7 · Projektseite: [cappy0815.github.io](https://cappy0815.github.io/#bambuwatch)
+**Aktuelle Version:** 1.7 · [Download v1.7](https://cappy0815.github.io/downloads/BambuWatch_v1.7.exe) · Projektseite: [cappy0815.github.io](https://cappy0815.github.io/#bambuwatch)
 
 ![BambuWatch: Live-Bild des A1 mit ausführlichem Overlay – Auftrag, Fortschritt, Restzeit, Temperaturen und AMS-Slots](BambuWatchScreenshot.png)
 
