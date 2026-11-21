@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0 (21.11.2026)
+- Komplett neu gebaut (Go statt AutoIt): eine einzige EXE mit eigenem Icon, ohne PowerShell-Helfer
+- Drucker, Zugangsdaten und Einstellungen aus 1.x werden übernommen (gleiche BambuWatch.ini)
+- Scharfe Darstellung bei Bildschirm-Skalierung (125 %, 150 % …)
+- Schriftgröße gilt sofort überall, dunkle Tooltips, Changelog zum Rollen
+- Hilfe: Link zur Projektseite, Taste L in der Tastenübersicht
+
 ## 1.7 (22.10.2026)
 - Pause, solange Bambu Studio läuft: alle Verbindungen getrennt, danach automatisch wieder verbunden (abschaltbar)
 

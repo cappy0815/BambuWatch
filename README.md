@@ -2,7 +2,7 @@
 
 Kleines Windows-Tool, das das Live-Bild deines Bambu-Lab-Druckers in einem kompakten, frei skalierbaren Fenster zeigt, mit dem Druckstatus als Overlay darüber. Im Heimnetz direkt vom Drucker, unterwegs über Home Assistant oder die Bambu-Cloud.
 
-**Aktuelle Version:** 1.7 · [Download v1.7](https://cappy0815.github.io/downloads/BambuWatch_v1.7.exe) · Projektseite: [cappy0815.github.io](https://cappy0815.github.io/#bambuwatch)
+**Aktuelle Version:** 2.0 · [Download v2.0](https://cappy0815.github.io/downloads/BambuWatch_v2.0.exe) · Projektseite: [cappy0815.github.io](https://cappy0815.github.io/#bambuwatch)
 
 ![BambuWatch: Live-Bild des A1 mit ausführlichem Overlay – Auftrag, Fortschritt, Restzeit, Temperaturen und AMS-Slots](BambuWatchScreenshot.png)
 
@@ -62,19 +62,25 @@ Verschieben an der Leiste oder direkt am Bild, Größe am Rand. Rechtsklick aufs
 
 ## Installation
 
-Windows 10/11: EXE starten, keine Installation nötig. Das Programm ist nicht signiert, daher zeigt Windows beim ersten Start „Der Computer wurde durch Windows geschützt“ → *Weitere Informationen* → *Trotzdem ausführen*.
+Windows 10/11: EXE starten, keine Installation nötig. Eine einzige Datei, ohne Zusatzdateien oder PowerShell-Helfer. Das Programm ist nicht signiert, daher zeigt Windows beim ersten Start „Der Computer wurde durch Windows geschützt“ → *Weitere Informationen* → *Trotzdem ausführen*.
 
 Die Einstellungen liegen in `BambuWatch.ini` neben der EXE (ist der Ordner schreibgeschützt, unter `%APPDATA%\BambuWatch`), Snapshots unter `Dokumente\BambuWatch`.
 
+**Von 1.x umsteigen:** Die 1.x beenden, `BambuWatch_v2.0.exe` in denselben Ordner legen und starten. Version 2.0 liest dieselbe `BambuWatch.ini` – alle Drucker, Zugangsdaten und Einstellungen sind sofort da. Laufen beide gleichzeitig, meldet sich 2.0 und bittet, die alte Version zu beenden.
+
 ## Selbst kompilieren
 
-Der Quellcode liegt in [`src/`](src): `BambuWatch_v1.7.au3` (Programm), `BambuWatch_helper.ps1` (Netzwerk-Helfer, PowerShell) und `BambuWatch.ico`. Helfer und Icon werden beim Kompilieren in die EXE eingebettet.
+Seit 2.0 ist BambuWatch in **Go** geschrieben, nur mit der Standardbibliothek (Fenster, Grafik und Netzwerk direkt über die Windows-API). Der Quellcode liegt in [`src/`](src).
 
-1. [AutoIt](https://www.autoitscript.com/site/autoit/downloads/) 3.3.16 oder neuer und [SciTE4AutoIt3](https://www.autoitscript.com/site/autoit-script-editor/downloads/) installieren
-2. Alle drei Dateien in einen Ordner legen, `BambuWatch_v1.7.au3` in SciTE öffnen
-3. **F7** – fertig ist `BambuWatch_v1.7.exe` mit Icon
+1. [Go](https://go.dev/dl/) 1.24 oder neuer und [Python 3](https://www.python.org/downloads/) installieren
+2. Im Ordner `src` Icon, Versionsinfo und Manifest erzeugen:
+   `python mkres.py 2.0.0.0 BambuWatch.ico`
+3. Bauen:
+   `go build -trimpath -ldflags "-H windowsgui -s -w" -o BambuWatch_v2.0.exe .`
 
-Ohne SciTE4AutoIt3 geht es auch mit **Aut2Exe** (Startmenü › AutoIt v3 › Compile Script to .exe): Quelldatei wählen, bei „Custom Icon“ `BambuWatch.ico` angeben, *Convert*.
+Unter Linux oder macOS geht es genauso mit vorangestelltem `GOOS=windows GOARCH=amd64`. `go test ./...` prüft Einstellungen, Statusauswertung und Anmeldung ohne echten Drucker.
+
+Die alte AutoIt-Version 1.7 (mit PowerShell-Helfer) liegt zum Nachschlagen in [`legacy/`](legacy).
 
 ## Sicherheit und Datenschutz
 
